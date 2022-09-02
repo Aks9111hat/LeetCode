@@ -1,6 +1,6 @@
 class Solution {
 public:
-    bool isValid(int i,int j,int rows,int cols){
+   /* bool isValid(int i,int j,int rows,int cols){
         if(i < 0 || j < 0 || i >= rows || j >= cols){
             return false;
         }
@@ -8,9 +8,9 @@ public:
         {
             return true;
         }
-    }
+    }*/
     void dfs(int &area, vector<vector<int>> &grid, int i,int j,int rows, int cols){
-        if(!isValid(i,j,rows,cols)){
+        if(i < 0 || j < 0 || i >= rows || j >= cols){
             return;
         }
         if(grid[i][j] == 0){
