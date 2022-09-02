@@ -22,7 +22,7 @@ public:
         dfs(area,grid,i+1,j,rows,cols);
         dfs(area,grid,i-1,j,rows,cols);
         dfs(area,grid,i,j+1,rows,cols);
-        dfs(area,grid,i,j+1,rows,cols);
+        //dfs(area,grid,i,j+1,rows,cols);
         dfs(area,grid,i,j-1,rows,cols);
         
     }
