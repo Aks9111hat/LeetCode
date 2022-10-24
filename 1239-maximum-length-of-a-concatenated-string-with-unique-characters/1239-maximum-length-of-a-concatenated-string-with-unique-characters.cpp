@@ -1,7 +1,6 @@
 class Solution {
 public:
-  
-      int solve(vector<string>&arr,int ind,int len,unordered_map<char,int>&m){
+    int solve(vector<string>&arr,int ind,int len,unordered_map<char,int>&m){
         if(ind==arr.size())
             return len;
         
