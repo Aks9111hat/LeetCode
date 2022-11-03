@@ -17,38 +17,40 @@ public:
 class Solution {
 public:
     Node* copyRandomList(Node* head) {
-        	Node* tmp1 = head;
-	Node* head2 = NULL;
-	Node* tmp2 = head2;
-	unordered_map<Node*,Node*> m;
-	while(tmp1){
-		if(head2 == NULL){
-			head2 = new Node(head->val);
-			tmp2 = head2;
-			tmp1 = tmp1->next;
-			continue;
-		}
-
-		tmp2->next = new Node(tmp1->val);
-		tmp2 = tmp2->next;
-		tmp1 = tmp1->next;
-	}
-	tmp1 = head;
-	tmp2 = head2;
-	while(tmp1){
-		m[tmp1] = tmp2;
-		tmp1 = tmp1->next;
-		tmp2 = tmp2->next;
-	}
-
-	tmp1 = head;
-	tmp2 = head2;
-	while(tmp1){
-		Node* dummy = tmp1->random;
-		tmp2->random = m[dummy];
-		tmp1 = tmp1->next;
-		tmp2 = tmp2->next;
-	}
-	return head2;
+       Node* tmp = head;
+        while(tmp!=NULL){
+            Node* newNode = new Node(tmp->val); 
+            newNode->next = tmp->next;
+            tmp->next = newNode;
+            tmp = tmp->next->next; // eql to tmp = tmp->next
+            
+        }
+        
+        // now conn random ptrs for Node' guys
+        tmp = head; 
+        while(tmp!=NULL){
+            if(tmp->random !=NULL)
+                tmp->next->random = tmp->random->next; // A'->next = Random->next (Random')
+            else
+                tmp->next->random = NULL;
+            
+            tmp=tmp->next->next;
+        }
+        
+        // now all conns are done
+        // bring back the org list and separate both
+        
+        //to store the new LL
+        Node* dummy = new Node(-1);
+        Node* tail = dummy;
+        tmp = head;
+        while(tmp != NULL){
+            tail->next= tmp->next;
+            tail = tmp;
+            tmp->next = tail->next;
+            tmp = tail->next;
+        }
+        
+        return dummy->next;
     }
 };
