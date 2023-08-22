@@ -2,7 +2,7 @@ class Solution {
 public:
     bool check(vector<int> &a, vector<int> &b){
         for(int i=0;i<26;i++){
-            if(b[i]==1){
+            if(b[i]!=0){
                 if(a[i]!=0){
                     return false;
                 }
@@ -21,7 +21,7 @@ public:
         }
         
         for(int j=0;j<s.length();j++){
-            b[s[j]-'a']=1;
+            b[s[j]-'a']+=1;
             c++;
             a[s[j]-'a']--;
             if(check(a,b)){
