@@ -1,0 +1,4 @@
+# Write your MySQL query statement below
+(select name as results from Users where user_id in (select user_id from MovieRating group by user_id having count(*) = (select count(*) as c from MovieRating group by user_id order by c desc limit 1) ) order by name limit 1)
+union all
+(select title as results from Movies where movie_id in (select movie_id from MovieRating group by movie_id having sum(if(created_at between "2020-02-01" and "2020-02-28",rating,0))/sum(if(created_at between "2020-02-01" and "2020-02-28",1,0)) = (select sum(if(created_at between "2020-02-01" and "2020-02-28",rating,0))/sum(if(created_at between "2020-02-01" and "2020-02-28",1,0)) as c from MovieRating group by movie_id order by c  desc limit 1)) order by title limit 1)
